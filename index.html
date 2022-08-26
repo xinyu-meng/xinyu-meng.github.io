@@ -225,8 +225,11 @@
       });
 
       AFRAME.registerComponent("mytarget", {
+        dependencies: ["mindar-image-system"],
         init: function () {
+          const sceneEl = document.querySelector("a-scene");
           const camera = document.querySelector("a-camera");
+          const arSystem = this.el.sceneEl.systems["mindar-image-system"];
           console.log("3322228888", camera);
           camera.setAttribute("position", "1 1 1");
           this.el.addEventListener("targetFound", (event) => {
@@ -243,6 +246,10 @@
           });
           this.el.addEventListener("targetLost", (event) => {
             console.log("target found");
+          });
+          sceneEl.addEventListener("arError", (event) => {
+            arSystem.ui.hideLoading();
+            arSystem.ui.showCompatibility();
           });
           //this.el.emit('targetFound');
         },
