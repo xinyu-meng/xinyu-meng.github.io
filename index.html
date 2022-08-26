@@ -212,7 +212,6 @@
           const _touch = event.touches[0];
           const _x = _touch.clientX;
           const _y = _touch.clientY;
-          console.log(_x, _y);
           if (this.ifMouseDown) {
             var temp_x = _x - this.x_cord;
             var temp_y = _y - this.y_cord;
@@ -247,7 +246,17 @@
           this.el.addEventListener("targetLost", (event) => {
             console.log("target found");
           });
+          console.log(
+            " navigator.mediaDevices.getUserMedia({audio: false, video: {" +
+              "   facingMode: (this.shouldFaceUser? 'face': 'environment')," +
+              "}}).then((stream) => {" +
+              "  alert('123')" +
+              "}).catch((err) => {" +
+              "  console.log('getUserMedia error', err);" +
+              "})"
+          );
           sceneEl.addEventListener("arError", (event) => {
+            console.log("arError");
             arSystem.ui.hideLoading();
             arSystem.ui.showCompatibility();
           });
